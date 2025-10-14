@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Reports = () => {
   const { reports, setReports } = useAppContext();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("adminToken");
 
   const fetchReports = async () => {
@@ -35,7 +35,7 @@ const Reports = () => {
   };
 
   useEffect(() => {
-    if (reports) return;
+    if (reports !== null) return;
     fetchReports();
   }, []);
 
