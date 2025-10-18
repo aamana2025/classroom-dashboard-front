@@ -171,7 +171,7 @@ export default function Home() {
   if (!isLogin || !user) {
     return (
       <div className="h-screen w-full flex items-center justify-center bg-[#090909] text-white" dir='rtl'>
-        <h3>login to start</h3>
+        <FaSpinner className="animate-spin text-3xl text-[#1998e1]" />
       </div>
     )
   }
