@@ -24,7 +24,7 @@ const Reports = () => {
       const mappedReports = data.reports.map((report) => ({
         ...report,
         icon: FaIcons[report.icon] || FaIcons.FaClipboardList,
-      }));
+      }));qwq
       setReports(mappedReports);
     } catch (err) {
       console.error("Failed to fetch reports:", err);
