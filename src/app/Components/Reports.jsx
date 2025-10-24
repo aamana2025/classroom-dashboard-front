@@ -24,7 +24,7 @@ const Reports = () => {
       const mappedReports = data.reports.map((report) => ({
         ...report,
         icon: FaIcons[report.icon] || FaIcons.FaClipboardList,
-      }));qwq
+      }));
       setReports(mappedReports);
     } catch (err) {
       console.error("Failed to fetch reports:", err);
@@ -62,7 +62,7 @@ const Reports = () => {
       ) : (
         <AnimatePresence>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reports.map((report, index) => (
+            {reports?.map((report, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}

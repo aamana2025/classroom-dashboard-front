@@ -134,6 +134,7 @@ const Students = () => {
                   <FaChalkboardTeacher className="text-[#1998e1]" />
                   {student.classes?.length || 0} كلاس
                 </div>
+              
               </motion.div>
             ))}
           </AnimatePresence>

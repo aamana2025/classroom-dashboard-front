@@ -13,8 +13,11 @@ import {
   FaMoneyBillWave,
   FaCalendarCheck,
   FaCreditCard,
+  FaCopy,
 } from "react-icons/fa";
 import { useAppContext } from "@/app/Context/AppContext";
+import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 const StudentDetailsPage = () => {
   const { id } = useParams();
@@ -46,6 +49,11 @@ const StudentDetailsPage = () => {
     }
   }, [])
 
+  // نسخ الـ ID
+  const handleCopy = (url) => {
+    navigator.clipboard.writeText(url);
+    toast.success("تم نسخ رابط الدفع");
+  };
 
   if (!student) {
     return (
@@ -59,6 +67,7 @@ const StudentDetailsPage = () => {
   return (
     <div className="min-h-screen bg-[#090909] text-white py-8 px-4 md:px-8 space-y-6">
       {/* Header */}
+      <Toaster position="top-center"/>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-[#1998e1]">تفاصيل الطالب</h2>
         <button
@@ -119,6 +128,30 @@ const StudentDetailsPage = () => {
             {student.status === "active" ? "نشط" : "غير نشط"}
           </span>
         </div>
+
+        {student.paymentURL && student.status !== "active"?
+          <div className="flex items-center gap-3 text-gray-300">
+            <FaCalendarAlt className="text-[#1998e1]" />
+            <span className="text-xs md:text-sm">لنك التجديد</span>
+            <span className="font-bold text-xs md:text-sm">
+              <Link className='py-1 px-3 bg-blue-700 rounded-lg' href={student.paymentURL}>رابط الدفع</Link>
+            </span>
+            {/* زر نسخ */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleCopy(student.paymentURL);
+              }}
+              className="rounded-full bg-[#1998e1]/10 text-[#1998e1] 
+                     hover:bg-[#1998e1] hover:text-white transition cursor-pointer"
+              title="نسخ الكود"
+            >
+              <FaCopy />
+            </button>
+          </div>
+          : ''
+        }
+
       </div>
 
       {/* الفصول */}
