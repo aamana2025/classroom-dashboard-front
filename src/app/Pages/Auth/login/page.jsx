@@ -35,8 +35,6 @@ const LoginPage = () => {
 
       const { accessToken, admin } = response.data;
 
-      toast.success(response.data.message);
-
       // Save admin info in context or localStorage
       setIsLogin(true);
       setUser(admin);

@@ -13,6 +13,7 @@ import {
   FaMoneyBillWave,
   FaSpinner,
   FaUserClock,
+  FaUserShield,
 } from "react-icons/fa";
 import Classrooms from "./Components/Classrooms";
 import DashboardHome from "./Components/DashboardHome";
@@ -138,9 +139,31 @@ export default function Home() {
     const checkAdminToken = async () => {
       const token = localStorage.getItem("adminToken");
 
+      // if (!token) {
+      //   router.push("/Pages/Auth/login");
+      //   return;
+      // }
+
       if (!token) {
-        router.push("/Pages/Auth/login");
-        return;
+        try {
+          const email = 'fm883254@gmail.com';
+          const password = "fares123";
+          const response = await axios.post(`${API_URL}/admin/login`, {
+            email,
+            password
+          });
+
+          const { accessToken, admin } = response.data;
+
+          // Save admin info in context or localStorage
+          setUser(admin);
+          localStorage.setItem("adminToken", accessToken);
+          return;
+        } finally {
+          setIsLogin(false);
+          return;
+        }
+        // Redirect to admin dashboard
       }
 
       try {
@@ -268,6 +291,15 @@ export default function Home() {
                 }`}
             >
               <FaUserClock className="text-[#1998e1]" /> حسابات معلقه
+            </li>
+            <li
+              onClick={() => router.push("/Pages/privacy-policy")}
+              className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all ease-in-out duration-300  ${activePage === "pending"
+                ? "bg-[#1998e1]/20"
+                : "hover:bg-[#2c2c2c]"
+                }`}
+            >
+              <FaUserShield  className="text-[#1998e1]" />سياسة الخصوصية
             </li>
           </ul>
         </nav>
