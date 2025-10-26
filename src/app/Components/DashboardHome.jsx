@@ -60,6 +60,8 @@ const DashboardHome = () => {
 
   return (
     <div>
+      <p className="text-[#1998e1] text-center">This website is operated by Fares Mohamed (developer of the Aamana Classroom app)</p>
+
       {/* الشريط العلوي */}
       <div className="flex flex-col md:flex-row justify-between items-end mb-8 mr-10 md:mr-0">
         <h2 className="text-2xl font-semibold self-start">

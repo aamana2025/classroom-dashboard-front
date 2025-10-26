@@ -296,7 +296,7 @@ export default function Home() {
               onClick={() => router.push("/Pages/privacy-policy")}
               className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all ease-in-out duration-300 hover:bg-[#2c2c2c]`}
             >
-              <FaUserShield  className="text-[#1998e1]" />سياسة الخصوصية
+              <FaUserShield  className="text-[#1998e1]" />Privacy Policy
             </li>
           </ul>
         </nav>
