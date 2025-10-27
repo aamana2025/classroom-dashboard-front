@@ -14,6 +14,7 @@ import {
   FaSpinner,
   FaUserClock,
   FaUserShield,
+  FaRegCreditCard,
 } from "react-icons/fa";
 import Classrooms from "./Components/Classrooms";
 import DashboardHome from "./Components/DashboardHome";
@@ -28,6 +29,7 @@ import { API_URL } from "./utils/api.js";
 import Transactions from "./Components/Transactions";
 import toast from "react-hot-toast";
 import PendingUsers from "./Components/PendingUsers";
+import Subscripe from "./Components/Subscripe";
 
 // ✅ Loader Component
 const Loader = () => {
@@ -99,6 +101,8 @@ export default function Home() {
         return <PendingUsers />;
       case "classrooms":
         return <Classrooms />;
+      case "subscripe":
+        return <Subscripe />;
       default:
         return <DashboardHome />;
     }
@@ -139,31 +143,9 @@ export default function Home() {
     const checkAdminToken = async () => {
       const token = localStorage.getItem("adminToken");
 
-      // if (!token) {
-      //   router.push("/Pages/Auth/login");
-      //   return;
-      // }
-
       if (!token) {
-        try {
-          const email = 'fm883254@gmail.com';
-          const password = "fares123";
-          const response = await axios.post(`${API_URL}/admin/login`, {
-            email,
-            password
-          });
-
-          const { accessToken, admin } = response.data;
-
-          // Save admin info in context or localStorage
-          setUser(admin);
-          localStorage.setItem("adminToken", accessToken);
-          return;
-        } finally {
-          setIsLogin(false);
-          return;
-        }
-        // Redirect to admin dashboard
+        router.push("/Pages/Auth/login");
+        return;
       }
 
       try {
@@ -284,6 +266,15 @@ export default function Home() {
               <FaMoneyBillWave className="text-[#1998e1]" /> التحويلات
             </li>
             <li
+              onClick={() => handleRouting("subscripe")}
+              className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all ease-in-out duration-300  ${activePage === "subscripe"
+                ? "bg-[#1998e1]/20"
+                : "hover:bg-[#2c2c2c]"
+                }`}
+            >
+              <FaRegCreditCard className="text-[#1998e1]" />الاشتراكات
+            </li>
+            <li
               onClick={() => handleRouting("pending")}
               className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all ease-in-out duration-300  ${activePage === "pending"
                 ? "bg-[#1998e1]/20"
@@ -296,13 +287,13 @@ export default function Home() {
               onClick={() => router.push("/Pages/privacy-policy")}
               className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all ease-in-out duration-300 hover:bg-[#2c2c2c]`}
             >
-              <FaUserShield  className="text-[#1998e1]" />Privacy Policy
+              <FaUserShield className="text-[#1998e1]" />Privacy Policy
             </li>
           </ul>
         </nav>
 
         <button
-          className="flex items-center gap-3 p-2 rounded-lg text-red-500 hover:bg-red-500/10  transition-all ease-in-out duration-300  mt-auto cursor-pointer"
+          className=" flex items-center gap-3 p-2 rounded-lg text-red-500 hover:bg-red-500/10  transition-all ease-in-out duration-300  mt-auto cursor-pointer"
           onClick={handleLogout}
         >
           <FaSignOutAlt /> تسجيل الخروج
@@ -314,7 +305,7 @@ export default function Home() {
         {/* menu button */}
         <button
           onClick={() => setSidebarOpen(true)}
-          className="md:hidden p-2 text-[#1998e1] text-2xl cursor-pointer fixed top-3 right-3 z-10 bg-[#111] rounded-xl"
+          className="cursor-pointer md:hidden p-2 text-[#1998e1] text-2xl fixed top-3 right-3 z-10 bg-[#111] rounded-xl"
         >
           <FaBars />
         </button>
