@@ -14,8 +14,9 @@ import {
   FaPlus,
   FaSearch,
 } from "react-icons/fa";
+import { API_URL } from "../utils/api.js";
 
-const API_URL = "http://localhost:5000/api";
+// const API_URL = "http://localhost:5000/api";
 
 const Subscripe = () => {
   const [mode, setMode] = useState("new"); // 'new' or 'renew'
