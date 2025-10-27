@@ -29,7 +29,6 @@ const DashboardHome = () => {
       });
       setHomeReport(resReports.data);
 
-      toast.success("تم تحديث البيانات والتقارير");
     } catch (err) {
       console.error("Error refreshing dashboard:", err);
       toast.error("فشل تحديث البيانات");
@@ -47,7 +46,6 @@ const DashboardHome = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setHomeReport(res.data);
-      toast.success("تم تحديث التقارير");
     } catch (err) {
       console.error("Error refreshing reports:", err);
       toast.error("فشل تحديث التقارير");

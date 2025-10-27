@@ -70,7 +70,6 @@ export default function PendingUsers() {
       if (res.data.success) {
         setpendingUsers(res.data.data);
         initTimers(res.data.data);
-        toast.success("✅ تم جلب المستخدمين بنجاح");
       } else {
         toast.error(res.data.message || "فشل في جلب المستخدمين ❌");
       }

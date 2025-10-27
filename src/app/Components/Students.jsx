@@ -29,7 +29,6 @@ const Students = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setStudents(res.data);
-      toast.success("تم تحديث الطلاب");
     } catch (err) {
       console.error("Error fetching students:", err);
       toast.error("فشل في تحميل الطلاب");

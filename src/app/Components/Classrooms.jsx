@@ -30,7 +30,6 @@ const Classrooms = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setClassrooms(res.data);
-      toast.success("تم تحديث الكلاسات ");
     } catch (error) {
       console.error("Error fetching classes:", error);
       toast.error("فشل في تحميل الكلاسات ");
